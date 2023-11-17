@@ -1,7 +1,8 @@
+//Requiring the product model
 const productModel = require('../../models/product_model');
 
 
-
+// to view all list of products
 module.exports.viewAll = async function (req, res) {
   
   try {
@@ -36,10 +37,10 @@ module.exports.viewAll = async function (req, res) {
 
 }
 
-
+// to create products
 module.exports.create = async function (req, res) {
  
-   console.log("create req is " + req.body.params);
+   console.log("create req is " + req.body.name);
 
   try {
           let product = await productModel.create(
@@ -76,18 +77,18 @@ module.exports.create = async function (req, res) {
 
 
   
-
+// to delete products
 module.exports.delete=async function(req,res){
 
   console.log("Deleted id "+req.params.id);
 
   try {
 
-          const productId = req.params.id;
+          const productId = req.params.id; // getting the :id 
 
           const deletedproduct = await productModel.findByIdAndDelete(productId);
 
-          if(deletedproduct){
+          if(deletedproduct){         // if deleted
 
                 res.status(200).json({
                   message: 'product deleted ' 
@@ -113,19 +114,19 @@ module.exports.delete=async function(req,res){
 
 
 
-
+// to update products
 module.exports.update=async function(req,res){
 
   console.log("product by Api update "+req);
 
   try {
 
-          const productId = req.params.id;
-          const quantity = req.query.number;
+          const productId = req.params.id;  // getiing the :id 
+          const quantity = req.query.number;   // getting the ?number
 
           const updateProduct = await productModel.updateOne({ _id: productId }, { $set: { quantity: quantity } });
 
-          if(updateProduct){
+          if(updateProduct){         // if product updated
 
             let updatedproduct= await productModel.findById(productId);
 
