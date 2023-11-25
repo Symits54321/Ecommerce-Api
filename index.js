@@ -1,3 +1,8 @@
+
+
+//require dotenv
+const dotenv = require('dotenv').config()
+
 const port = 8280;
 
 
