@@ -49,6 +49,7 @@ app.listen(port,function(err){
         console.log('not able to listen port');
     }
     console.log(`Ecoomerce API is Listening to port:${port}`);
+    console.log(`process.env:--${process.env.MONGO_SERVER_URL}`);
 });
 
 
