@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 main().catch(err => console.log("database err"+err));
 async function main(){
  
-   await mongoose.connect('');
+  let url = process.env.MONGO_SERVER_URL;
+   await mongoose.connect(`${url}`);
   }
 
  // connect to DB
@@ -16,6 +17,7 @@ db.on('error',console.error.bind(console,'error connecting to db'));
  
 // up and running then print the message
 db.once('open',function(){
-  console.log('Succesfully connected to the database')
+  console.log('Succesfully connected to the database');
+ 
 });
 
